@@ -8,17 +8,52 @@
   "collapse-color-groups": false,
   "colorGroups": [
     {
-      "query": "tag:#bclause",
+      "query": "path:Conflicts",
       "color": {
         "a": 1,
         "rgb": 14701138
       }
     },
     {
-      "query": "tag:#LoveandCourtship",
+      "query": "path:Characters",
       "color": {
         "a": 1,
         "rgb": 14725458
+      }
+    },
+    {
+      "query": "path:B-Clauses/Subgroups",
+      "color": {
+        "a": 1,
+        "rgb": 11657298
+      }
+    },
+    {
+      "query": "path:B-Clauses/Groups",
+      "color": {
+        "a": 1,
+        "rgb": 5431378
+      }
+    },
+    {
+      "query": "path:A-Clauses",
+      "color": {
+        "a": 1,
+        "rgb": 5431473
+      }
+    },
+    {
+      "query": "path:C-Clauses",
+      "color": {
+        "a": 1,
+        "rgb": 5419488
+      }
+    },
+    {
+      "query": "path:B-Clauses",
+      "color": {
+        "a": 1,
+        "rgb": 5395168
       }
     }
   ],
@@ -27,11 +62,11 @@
   "textFadeMultiplier": 0,
   "nodeSizeMultiplier": 1,
   "lineSizeMultiplier": 1,
-  "collapse-forces": true,
-  "centerStrength": 0.518713248970312,
+  "collapse-forces": false,
+  "centerStrength": 0.333040730337079,
   "repelStrength": 10,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 0.48854597807787314,
+  "scale": 0.3653479767982472,
   "close": true
 }
