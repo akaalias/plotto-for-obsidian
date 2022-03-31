@@ -1,0 +1,3 @@
+## A Person of Ideals
+
+

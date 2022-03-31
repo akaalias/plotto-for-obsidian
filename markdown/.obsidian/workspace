@@ -1,0 +1,99 @@
+{
+  "main": {
+    "id": "443c4fb44d8305c5",
+    "type": "split",
+    "children": [
+      {
+        "id": "a377f5381d2f8849",
+        "type": "leaf",
+        "state": {
+          "type": "graph",
+          "state": {}
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "1943fb7484aea6b3",
+    "type": "split",
+    "children": [
+      {
+        "id": "755076966c4d1c07",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d31e7d4e6d55c259",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "23e04f470090d05f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "B-3",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "da215da6793a187e",
+    "type": "split",
+    "children": [
+      {
+        "id": "99b9b2e39d4196d3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1244a098a16e9082",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "a377f5381d2f8849",
+  "lastOpenFiles": [
+    "Conflicts/279.md",
+    "Conflicts/200.md",
+    "Conflicts/142.md",
+    "Conflicts/116.md",
+    "Conflicts/61.md",
+    "Conflicts/30.md",
+    "Conflicts/22.md",
+    "Conflicts/20.md",
+    "Conflicts/16.md",
+    "Conflicts/9.md"
+  ]
+}
