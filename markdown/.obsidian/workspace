@@ -4,14 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "f0caa93e3cf5b9c7",
+        "id": "c86982713b6cf049",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "START HERE.md",
-            "mode": "source"
-          }
+          "type": "graph",
+          "state": {}
         }
       }
     ],
@@ -52,7 +49,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 289
+    "width": 394
   },
   "right": {
     "id": "da215da6793a187e",
@@ -68,7 +65,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "START HERE.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -86,17 +82,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "f0caa93e3cf5b9c7",
+  "active": "c86982713b6cf049",
   "lastOpenFiles": [
+    "Conflicts/110.md",
+    "B-Clauses/Becoming Aware of an Important Secret that Calls for Decisive Action.md",
     "START HERE.md",
+    "Conflicts/1451.md",
+    "B-Clauses/Bearing Patiently with Misfortunes and Seeking to Attain Cherished Aims Honorably.md",
+    "B-Clauses/Assuming the Character of a Criminal in a Perfectly Honest Enterprise.md",
+    "B-Clauses/Aiding Another to Hide from the World a Fateful Secret.md",
     "Conflicts/364.md",
     "Conflicts/818.md",
-    "Conflicts/1089.md",
-    "Conflicts/1051.md",
-    "Plots/Exploration 1.md",
-    "Conflicts/914.md",
-    "Conflicts/847.md",
-    "Subgroups/Love’s Misadventures.md",
-    "Groups/Love and Courtship.md"
+    "Conflicts/1089.md"
   ]
 }

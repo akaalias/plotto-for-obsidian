@@ -1,7 +1,7 @@
-Hey there and welcome to Plotto for Obsidian. 
+Hey there and welcome to Plotto for Obsidian!
 
 ## Getting Started
-The easiest way to start exploring this vault while picking pieces for your new plot is:
+The easiest way to start exploring this vault and pick pieces for your new plot is:
 
 ### 1. Create a Scratchpad
 1. Create a blank note in "Plots" – This Plot-Note where you'll keep track of interesting nuggets you find along the way
@@ -20,4 +20,4 @@ The easiest way to start exploring this vault while picking pieces for your new 
 - Open in new pane:  `Command-Enter` to follow the link in a new pane
 - Go Back: `Command-Left Arrow`
 - Go Forward: `Command-Right Arrow`
-	
+
