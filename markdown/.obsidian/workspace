@@ -1,0 +1,103 @@
+{
+  "main": {
+    "id": "443c4fb44d8305c5",
+    "type": "split",
+    "children": [
+      {
+        "id": "5e2419511859430b",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "Conflicts/259.md",
+            "mode": "source"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "1943fb7484aea6b3",
+    "type": "split",
+    "children": [
+      {
+        "id": "755076966c4d1c07",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d31e7d4e6d55c259",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "23e04f470090d05f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "undefined",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "da215da6793a187e",
+    "type": "split",
+    "children": [
+      {
+        "id": "99b9b2e39d4196d3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1244a098a16e9082",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Conflicts/259.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "5e2419511859430b",
+  "lastOpenFiles": [
+    "Conflicts/259.md",
+    "Characters/A-3.md",
+    "Characters/A-2.md",
+    "Conflicts/167.md",
+    "undefined.md",
+    "Conflicts/94.md",
+    "Conflicts/991.md",
+    "Conflicts/989.md",
+    "Conflicts/987.md",
+    "B-Clauses/Subgroups/Obligation.md"
+  ]
+}

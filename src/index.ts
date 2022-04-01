@@ -19,6 +19,7 @@ let groupsToConflictsMap =  new Map<string, string[]>()
 let groupsToSubgroupsMap =  new Map<string, string[]>()
 let subgroupsToConflictsMap =  new Map<string, string[]>()
 
+// Relationships
 function createBClausesMapping() {
     let clauseID = 1
     for (let masterClauseB of jsonRoot["masterClauseB"]) {
@@ -29,21 +30,6 @@ function createBClausesMapping() {
         clauseID += 1
     }
 }
-
-function createGroupSubgroupRelationships(group: string, subgroup: string) {
-    if(subgroup == "") { return }
-
-    if (!groupsToSubgroupsMap.has(group)) {
-        groupsToSubgroupsMap.set(group, [])
-    }
-
-    // @ts-ignore
-    if (groupsToSubgroupsMap.get(group).indexOf(subgroup) < 0) {
-        // @ts-ignore
-        groupsToSubgroupsMap.get(group).push(subgroup)
-    }
-}
-
 function createRelationships() {
     const conflictsRaw = jsonRoot["conflicts"]
     let conflictArray = []
@@ -72,18 +58,47 @@ function createRelationships() {
         createGroupSubgroupRelationships(group, subgroup);
     }
 }
-function cleanUpConflictID(conflictID: any) {
-    const conflictIDString = "" + conflictID
-    let theConflictIDCleaned = conflictIDString
-    let hash = ""
+function createGroupSubgroupRelationships(group: string, subgroup: string) {
+    if(subgroup == "") { return }
 
-    if (conflictIDString.match(/[a-z]/)) {
-        const firstCharIdx = conflictIDString.search(/[a-z]/)
-        theConflictIDCleaned = conflictIDString.substring(0, firstCharIdx + 1)
-        theConflictIDCleaned = theConflictIDCleaned.replaceAll(/[a-z]/g, "")
-        hash = conflictIDString.substring(firstCharIdx, conflictIDString.length)
+    if (!groupsToSubgroupsMap.has(group)) {
+        groupsToSubgroupsMap.set(group, [])
     }
-    return theConflictIDCleaned;
+
+    // @ts-ignore
+    if (groupsToSubgroupsMap.get(group).indexOf(subgroup) < 0) {
+        // @ts-ignore
+        groupsToSubgroupsMap.get(group).push(subgroup)
+    }
+}
+function createConflictRelationshipMaps(conflictID: any, bClause: string | undefined, group: any, subgroup: any) {
+    if (!conflictToBClauseMap.has(conflictID)) {
+        if (bClause != null) {
+            conflictToBClauseMap.set(conflictID, bClause)
+        }
+    }
+
+    if (!conflictToGroupMap.has(conflictID)) {
+        conflictToGroupMap.set(conflictID, group)
+    }
+
+    if (!conflictToSubGroupMap.has(conflictID)) {
+        conflictToSubGroupMap.set(conflictID, subgroup)
+    }
+}
+function createBClauseRelationships(bClause: string | undefined, conflictID: any) {
+    // B-Clause -> Conflicts
+    if (!bClauseToConflictsMap.has(<string>bClause)) {
+        if (bClause != null) {
+            bClauseToConflictsMap.set(bClause, [])
+        }
+    }
+
+    if (bClause != null) {
+        // console.log(bClause + " -> [..." + conflictID + "...]")
+        // @ts-ignore
+        bClauseToConflictsMap.get(bClause).push(conflictID)
+    }
 }
 function createGroupRelationships(group: any, theConflictIDCleaned: string) {
     if (!groupsToConflictsMap.has(group)) {
@@ -100,14 +115,21 @@ function createSubgroupRelationships(subgroup: any, theConflictIDCleaned: string
     // @ts-ignore
     subgroupsToConflictsMap.get(subgroup).push(theConflictIDCleaned)
 }
-function saveMarkdownFile(file: string, content: string) {
-    fs.writeFile(file, content, (err: any) => {
-        if (err) {
-            console.error(err)
-            return
-        }
-    })
+function cleanUpConflictID(conflictID: any) {
+    const conflictIDString = "" + conflictID
+    let theConflictIDCleaned = conflictIDString
+    let hash = ""
+
+    if (conflictIDString.match(/[a-z]/)) {
+        const firstCharIdx = conflictIDString.search(/[a-z]/)
+        theConflictIDCleaned = conflictIDString.substring(0, firstCharIdx + 1)
+        theConflictIDCleaned = theConflictIDCleaned.replaceAll(/[a-z]/g, "")
+        hash = conflictIDString.substring(firstCharIdx, conflictIDString.length)
+    }
+    return theConflictIDCleaned;
 }
+
+// File Creation
 function createConflictFiles() {
     // For each conflict
     for (let conflict of conflicts) {
@@ -138,12 +160,15 @@ function createConflictFiles() {
                 }
 
                 // Pre-Links
-                outputMarkdownFileContent += "- "
+                outputMarkdownFileContent += "- Previous: "
                 for (let linkySpan of prelinkLinkGroup) {
                     const ahref = linkySpan.querySelector('.clink')
                     const linkHref = ahref?.getAttribute('href')
                     const linkHrefToConflictId = linkHref?.replace("#", "")
                     const linkText = ahref?.innerText
+
+                    // @ts-ignore
+                    if(linkHrefToConflictId == null) { continue}
 
                     if (linkText !== linkHrefToConflictId) {
                         outputMarkdownFileContent += "[[" + linkHrefToConflictId + " | " + linkText + "]] "
@@ -155,25 +180,30 @@ function createConflictFiles() {
 
                 // Description(s)
                 for (let descPiece of itemizedDescriptions) {
-                    if (descPiece == "") {
-                        continue
-                    }
-                    descPiece = descPiece.trim()
+                    if (descPiece.trim() == "") {
 
-                    for(let character of characters) {
-                        descPiece = descPiece.replaceAll(character, "[[" + character + "]]")
-                    }
+                    } else {
+                        descPiece = descPiece.trim()
 
-                    outputMarkdownFileContent += "- " + descPiece + "\n"
+                        for(let character of characters) {
+                            if(character == "X") { continue }
+                            descPiece = descPiece.replaceAll(character, "[[" + character + "]]")
+                        }
+
+                        outputMarkdownFileContent += "- " + descPiece + "\n"
+                    }
                 }
 
                 // Post-Links
-                outputMarkdownFileContent += "- "
+                outputMarkdownFileContent += "- Next: "
                 for (let linkySpan of postlinkLinkGroup) {
                     const ahref = linkySpan.querySelector('.clink')
                     const linkHref = ahref?.getAttribute('href')
                     const linkHrefToConflictId = linkHref?.replace("#", "")
                     const linkText = ahref?.innerText
+
+                    // @ts-ignore
+                    if(linkHrefToConflictId == null) { continue}
 
                     if (linkText !== linkHrefToConflictId) {
                         outputMarkdownFileContent += "[[" + linkHrefToConflictId + " | " + linkText + "]] "
@@ -321,35 +351,16 @@ function createCClauseFiles() {
         saveMarkdownFile("./markdown/C-Clauses/" + masterClauseC + ".md", markdown)
     }
 }
-function createConflictRelationshipMaps(conflictID: any, bClause: string | undefined, group: any, subgroup: any) {
-    if (!conflictToBClauseMap.has(conflictID)) {
-        if (bClause != null) {
-            conflictToBClauseMap.set(conflictID, bClause)
+function saveMarkdownFile(file: string, content: string) {
+    fs.writeFile(file, content, (err: any) => {
+        if (err) {
+            console.error(err)
+            return
         }
-    }
-
-    if (!conflictToGroupMap.has(conflictID)) {
-        conflictToGroupMap.set(conflictID, group)
-    }
-
-    if (!conflictToSubGroupMap.has(conflictID)) {
-        conflictToSubGroupMap.set(conflictID, subgroup)
-    }
+    })
 }
-function createBClauseRelationships(bClause: string | undefined, conflictID: any) {
-    // B-Clause -> Conflicts
-    if (!bClauseToConflictsMap.has(<string>bClause)) {
-        if (bClause != null) {
-            bClauseToConflictsMap.set(bClause, [])
-        }
-    }
 
-    if (bClause != null) {
-        // console.log(bClause + " -> [..." + conflictID + "...]")
-        // @ts-ignore
-        bClauseToConflictsMap.get(bClause).push(conflictID)
-    }
-}
+// Prompt
 function promptAndExecuteExport() {
     var questions = [
         {
@@ -369,7 +380,6 @@ function promptAndExecuteExport() {
         createGroupFiles()
         createSubgroupFiles()
         createCClauseFiles()
-
         createConflictFiles()
     })
 }
