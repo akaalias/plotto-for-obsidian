@@ -49,7 +49,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 394
+    "width": 394,
+    "collapsed": true
   },
   "right": {
     "id": "da215da6793a187e",
@@ -84,6 +85,7 @@
   },
   "active": "c86982713b6cf049",
   "lastOpenFiles": [
+    "966-2.md",
     "Conflicts/110.md",
     "B-Clauses/Becoming Aware of an Important Secret that Calls for Decisive Action.md",
     "START HERE.md",
@@ -92,7 +94,6 @@
     "B-Clauses/Assuming the Character of a Criminal in a Perfectly Honest Enterprise.md",
     "B-Clauses/Aiding Another to Hide from the World a Fateful Secret.md",
     "Conflicts/364.md",
-    "Conflicts/818.md",
-    "Conflicts/1089.md"
+    "Conflicts/818.md"
   ]
 }

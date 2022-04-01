@@ -1,11 +1,11 @@
 {
-  "collapse-filter": true,
+  "collapse-filter": false,
   "search": "",
   "showTags": false,
   "showAttachments": false,
-  "hideUnresolved": false,
+  "hideUnresolved": true,
   "showOrphans": true,
-  "collapse-color-groups": false,
+  "collapse-color-groups": true,
   "colorGroups": [
     {
       "query": "line:(Love and Courtship)",
@@ -59,14 +59,14 @@
   ],
   "collapse-display": true,
   "showArrow": false,
-  "textFadeMultiplier": 0,
-  "nodeSizeMultiplier": 1,
-  "lineSizeMultiplier": 1,
+  "textFadeMultiplier": 1.1,
+  "nodeSizeMultiplier": 1.2549813034188,
+  "lineSizeMultiplier": 0.506370192307692,
   "collapse-forces": true,
-  "centerStrength": 0.518713248970312,
-  "repelStrength": 10,
-  "linkStrength": 1,
-  "linkDistance": 250,
-  "scale": 0.2093856759416939,
+  "centerStrength": 0.553886217948718,
+  "repelStrength": 11.0924145299145,
+  "linkStrength": 0.938434829059829,
+  "linkDistance": 500,
+  "scale": 0.1744640306304711,
   "close": true
 }
