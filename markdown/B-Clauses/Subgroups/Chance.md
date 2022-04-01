@@ -1,4 +1,0 @@
-## Chance
-
-### Group
-- [[Enterprise]]

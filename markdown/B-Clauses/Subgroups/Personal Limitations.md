@@ -1,4 +1,0 @@
-## Personal Limitations
-
-### Group
-- [[Enterprise]]

@@ -1,4 +1,0 @@
-## Deliverance
-
-### Group
-- [[Enterprise]]

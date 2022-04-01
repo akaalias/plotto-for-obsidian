@@ -1,4 +1,0 @@
-## Craftiness
-
-### Group
-- [[Enterprise]]

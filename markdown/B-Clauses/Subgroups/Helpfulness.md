@@ -1,4 +1,0 @@
-## Helpfulness
-
-### Group
-- [[Enterprise]]

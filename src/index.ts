@@ -1,93 +1,115 @@
 import { parse } from 'node-html-parser'
 import 'ts-replace-all'
+
 const inquirer = require('inquirer')
-
 const fs = require('fs')
-const root = parse(fs.readFileSync('Plotto.html'))
-const json = JSON.parse(fs.readFileSync('plotto.json'));
-
-const frontMatter = root.querySelector('.frontmatter')
-const bodyList = frontMatter?.querySelectorAll('.bodylist')
-const conflicts = root.querySelectorAll('.conflict')
+const htmlRoot = parse(fs.readFileSync('Plotto.html'))
+const jsonRoot = JSON.parse(fs.readFileSync('plotto.json'));
+const conflicts = htmlRoot.querySelectorAll('.conflict')
 
 let characters: string[] = []
-let bClausesToConflictsMap = new Map<string, string[]>()
-let conflictsToBClauseMap = new Map<string, string>()
+let bClauseIDToBClause = new Map<number, string>()
 
+let conflictToBClauseMap = new Map<string, string>()
+let conflictToGroupMap = new Map<string, string>()
+let conflictToSubGroupMap = new Map<string, string>()
+
+let bClauseToConflictsMap = new Map<string, string[]>()
+let groupsToConflictsMap =  new Map<string, string[]>()
+let groupsToSubgroupsMap =  new Map<string, string[]>()
+let subgroupsToConflictsMap =  new Map<string, string[]>()
+
+function createBClausesMapping() {
+    let clauseID = 1
+    for (let masterClauseB of jsonRoot["masterClauseB"]) {
+        const description = masterClauseB["description"]
+
+        // Save mapping ID to description
+        bClauseIDToBClause.set(clauseID, description);
+        clauseID += 1
+    }
+}
+
+function createGroupSubgroupRelationships(group: string, subgroup: string) {
+    if(subgroup == "") { return }
+
+    if (!groupsToSubgroupsMap.has(group)) {
+        groupsToSubgroupsMap.set(group, [])
+    }
+
+    // @ts-ignore
+    if (groupsToSubgroupsMap.get(group).indexOf(subgroup) < 0) {
+        // @ts-ignore
+        groupsToSubgroupsMap.get(group).push(subgroup)
+    }
+}
+
+function createRelationships() {
+    const conflictsRaw = jsonRoot["conflicts"]
+    let conflictArray = []
+    for(let id in conflictsRaw) {
+        conflictArray.push(jsonRoot["conflicts"][id])
+    }
+
+    for (let conflict of conflictArray) {
+        // @ts-ignore
+        const conflictID = conflict["conflictid"]
+        // @ts-ignore
+        const group = conflict["group"]
+        // @ts-ignore
+        const subgroup = conflict["subgroup"]
+        // @ts-ignore
+        const bclauseID = conflict["bclause"]
+        // @ts-ignore
+        const bClause = bClauseIDToBClause.get(bclauseID)
+
+        let theConflictIDCleaned = cleanUpConflictID(conflictID)
+
+        createConflictRelationshipMaps(theConflictIDCleaned, bClause, group, subgroup)
+        createBClauseRelationships(bClause, theConflictIDCleaned)
+        createGroupRelationships(group, theConflictIDCleaned)
+        createSubgroupRelationships(subgroup, theConflictIDCleaned)
+        createGroupSubgroupRelationships(group, subgroup);
+    }
+}
+function cleanUpConflictID(conflictID: any) {
+    const conflictIDString = "" + conflictID
+    let theConflictIDCleaned = conflictIDString
+    let hash = ""
+
+    if (conflictIDString.match(/[a-z]/)) {
+        const firstCharIdx = conflictIDString.search(/[a-z]/)
+        theConflictIDCleaned = conflictIDString.substring(0, firstCharIdx + 1)
+        theConflictIDCleaned = theConflictIDCleaned.replaceAll(/[a-z]/g, "")
+        hash = conflictIDString.substring(firstCharIdx, conflictIDString.length)
+    }
+    return theConflictIDCleaned;
+}
+function createGroupRelationships(group: any, theConflictIDCleaned: string) {
+    if (!groupsToConflictsMap.has(group)) {
+        groupsToConflictsMap.set(group, [])
+    }
+    // @ts-ignore
+    groupsToConflictsMap.get(group).push(theConflictIDCleaned)
+}
+function createSubgroupRelationships(subgroup: any, theConflictIDCleaned: string) {
+    if (!subgroupsToConflictsMap.has(subgroup)) {
+        subgroupsToConflictsMap.set(subgroup, [])
+    }
+
+    // @ts-ignore
+    subgroupsToConflictsMap.get(subgroup).push(theConflictIDCleaned)
+}
 function saveMarkdownFile(file: string, content: string) {
     fs.writeFile(file, content, (err: any) => {
         if (err) {
             console.error(err)
             return
         }
-        //file written successfully
-        console.log("Success: Wrote " + file)
     })
 }
-function compileBClauseIndex() {
-// Index of Conflicts Grouped Under the “B” Clauses
-// @ts-ignore
-    for (let listItem of bodyList) {
-        const links = listItem.querySelectorAll('.clink')
-        if (links.length <= 0) continue
-
-        const itemText = listItem.innerText
-        const cleanedItemText = itemText.replace(/^\(\d+\)/, "")
-        const bClauses = cleanedItemText.split(";")
-
-        // Iterate over cleaned bClause list item
-        for (let clause of bClauses) {
-            const nameMatches = clause.match(/^\D+/)
-            if (nameMatches != null && nameMatches.length > 0) {
-                const clauseName = nameMatches[0].trim()
-                const regexp = new RegExp(/\d+/, 'g');
-
-                // Add clause if not yet added
-                if (!bClausesToConflictsMap.has(clauseName)) {
-                    var emptyConflictIDs = new Array<string>()
-                    bClausesToConflictsMap.set(clauseName, emptyConflictIDs)
-                }
-
-                // Deal with the conflictIDs
-                let match;
-                while ((match = regexp.exec(clause)) !== null) {
-                    const conflictID = match[0]
-
-                    // Add it to bClausesToConflictsMap
-                    let existingConflictIDs = bClausesToConflictsMap.get(clauseName)
-                    if (existingConflictIDs != null) {
-                        existingConflictIDs.push(conflictID)
-                    }
-
-                    // Add it to conflictsToBClauseMap
-                    if(!conflictsToBClauseMap.has(conflictID)) {
-                        conflictsToBClauseMap.set(conflictID, clauseName)
-                    }
-
-                    // console.log(conflictID + " -> " + conflictsToBClauseMap.get(conflictID))
-                }
-            }
-        }
-    }
-}
-function extractBClauseConflictMappings() {
-    for (let bClauseEntryKey of Array.from(bClausesToConflictsMap.keys())) {
-        const conflicts = bClausesToConflictsMap.get(bClauseEntryKey)
-
-        let markdown = "## " + bClauseEntryKey + "\n"
-        markdown += "### Conflicts\n"
-        // @ts-ignore
-        for (let conflictID of conflicts) {
-            markdown += "- " + "[[" + conflictID + "]]\n"
-        }
-
-        markdown += "\n"
-        markdown += "#bclause\n"
-        saveMarkdownFile("./markdown/groups/" + bClauseEntryKey + ".md", markdown)
-    }
-}
-function extractConflicts() {
-// For each conflict
+function createConflictFiles() {
+    // For each conflict
     for (let conflict of conflicts) {
         const conflictIdDiv = conflict.querySelector('.conflictid')
         const conflictId = conflictIdDiv?.innerText
@@ -163,16 +185,25 @@ function extractConflicts() {
                 outputMarkdownFileContent += "\n"
             }
 
-            // Add link back to BClause
-            const bClauseName = conflictsToBClauseMap.get(conflictId)
+            // Related B-Clause
+            const bClause = conflictToBClauseMap.get(conflictId)
+            if(bClause) {
+                outputMarkdownFileContent += "## B Clause\n"
+                outputMarkdownFileContent += "- " + bClause + "\n"
+                outputMarkdownFileContent += "\n"
+            }
 
-            if (bClauseName != null) {
+            const group = conflictToGroupMap.get(conflictId)
+            if(group) {
+                outputMarkdownFileContent += "## Group\n"
+                outputMarkdownFileContent += "- " + group + "\n"
                 outputMarkdownFileContent += "\n"
-                outputMarkdownFileContent += "### Group\n"
-                outputMarkdownFileContent += "- [[" + bClauseName + "]]\n"
-                outputMarkdownFileContent += "\n"
-                outputMarkdownFileContent += "### Tags\n"
-                outputMarkdownFileContent += "- #" + bClauseName?.replace(/\s/g, "") + "\n"
+            }
+
+            const subgroup = conflictToSubGroupMap.get(conflictId)
+            if(subgroup) {
+                outputMarkdownFileContent += "### Subgroup\n"
+                outputMarkdownFileContent += "- " + subgroup + "\n"
                 outputMarkdownFileContent += "\n"
             }
 
@@ -180,9 +211,9 @@ function extractConflicts() {
         }
     }
 }
-function createCharacters() {
+function createCharacterFiles() {
 
-    const charactersJSON = json["characters"]
+    const charactersJSON = jsonRoot["characters"]
 
     for (const [mapKey, mapValue] of Object.entries(charactersJSON)) {
         if(mapKey == "A" || mapKey == "B") {
@@ -196,19 +227,17 @@ function createCharacters() {
         characters.push(mapKey)
     }
 }
-function createAClauses() {
-    for (let masterClauseA of json["masterClauseA"]) {
+function createAClauseFiles() {
+    for (let masterClauseA of jsonRoot["masterClauseA"]) {
         let markdown = "## " + masterClauseA + "\n"
         markdown += "\n"
         markdown += "\n"
         saveMarkdownFile("./markdown/A-Clauses/" + masterClauseA + ".md", markdown)
     }
 }
-function createBClauses() {
-    let createdGroups = new Map<string, string[]>()
-    let createdSubGroups = new Map<string, string>()
+function createBClauseFiles() {
 
-    for (let masterClauseB of json["masterClauseB"]) {
+    for (let masterClauseB of jsonRoot["masterClauseB"]) {
         const description = masterClauseB["description"]
         const group = masterClauseB["group"]
         const subGroup = masterClauseB["subgroup"]
@@ -216,18 +245,27 @@ function createBClauses() {
         let markdown = "## " + description + "\n"
         markdown += "\n"
 
-        // Create Node
+        // Create links to conflicts using their IDs
         for (let conflictID of masterClauseB["nodes"]) {
+
+            // let's see if there's a hash in there or not
             const idString = "" + conflictID
+            let id = idString
+            let hash = ""
+
             if (idString.match(/[a-z]/)) {
                 const firstCharIdx = idString.search(/[a-z]/)
-                const id = idString.substring(0, firstCharIdx)
-                const char = idString.substring(firstCharIdx, idString.length)
-                markdown += "- " + "[[" + id + "#" + char + "]]\n"
+                id = idString.substring(0, firstCharIdx)
+                hash = idString.substring(firstCharIdx, idString.length)
+            }
+
+            if(hash != "") {
+                markdown += "- " + "[[" + id + "#" + hash + "]]\n"
             } else {
-                markdown += "- " + "[[" + conflictID + "]]\n"
+                markdown += "- " + "[[" + id + "]]\n"
             }
         }
+
         markdown += "\n"
 
         markdown += "### Group\n"
@@ -238,30 +276,78 @@ function createBClauses() {
         markdown += "- " + "[[" + subGroup + "]]\n"
         markdown += "\n"
 
-        if(!createdSubGroups.has(subGroup)) {
-            let subGroupMarkdown = "## " + subGroup + "\n"
-            subGroupMarkdown += "\n"
-            subGroupMarkdown += "### Group\n"
-            subGroupMarkdown += "- [[" + group + "]]\n"
-            saveMarkdownFile("./markdown/B-Clauses/Subgroups/" + subGroup + ".md", subGroupMarkdown)
-            createdSubGroups.set(subGroup, subGroup)
-        }
-
-        if(!createdGroups.has(group)) {
-            const groupMarkdown = "## " + group + "\n"
-            saveMarkdownFile("./markdown/B-Clauses/Groups/" + group + ".md", groupMarkdown)
-            createdGroups.set(group, group)
-        }
-
         saveMarkdownFile("./markdown/B-Clauses/" + description + ".md", markdown)
     }
 }
-function createCClauses() {
-    for (let masterClauseC of json["masterClauseC"]) {
+function createGroupFiles() {
+    for (let masterClauseB of jsonRoot["masterClauseB"]) {
+        const group = masterClauseB["group"]
+        const subgroups = groupsToSubgroupsMap.get(group)
+
+        let groupMarkdown = "## " + group + "\n"
+        // @ts-ignore
+        if(subgroups != null) {
+            for(let subgroup of subgroups) {
+                groupMarkdown += "- [[" + subgroup + "]]\n"
+            }
+        }
+
+        saveMarkdownFile("./markdown/Groups/" + group + ".md", groupMarkdown)
+    }
+}
+function createSubgroupFiles() {
+    for (let masterClauseB of jsonRoot["masterClauseB"]) {
+        const subgroup = masterClauseB["subgroup"]
+        const subgroupConflicts = subgroupsToConflictsMap.get(subgroup)
+        let groupMarkdown = "## " + subgroup + "\n"
+
+        // Only show conflicts once
+        let seenConflictIDs = new Map<string, string>()
+        // @ts-ignore
+        for(let conflictID of subgroupConflicts) {
+            if(seenConflictIDs.has(conflictID)) { continue }
+            groupMarkdown += "- [[" + conflictID + "]]\n"
+            seenConflictIDs.set(conflictID, conflictID)
+        }
+
+        saveMarkdownFile("./markdown/Subgroups/" + subgroup + ".md", groupMarkdown)
+    }
+}
+function createCClauseFiles() {
+    for (let masterClauseC of jsonRoot["masterClauseC"]) {
         let markdown = "## " + masterClauseC + "\n"
         markdown += "\n"
         markdown += "\n"
         saveMarkdownFile("./markdown/C-Clauses/" + masterClauseC + ".md", markdown)
+    }
+}
+function createConflictRelationshipMaps(conflictID: any, bClause: string | undefined, group: any, subgroup: any) {
+    if (!conflictToBClauseMap.has(conflictID)) {
+        if (bClause != null) {
+            conflictToBClauseMap.set(conflictID, bClause)
+        }
+    }
+
+    if (!conflictToGroupMap.has(conflictID)) {
+        conflictToGroupMap.set(conflictID, group)
+    }
+
+    if (!conflictToSubGroupMap.has(conflictID)) {
+        conflictToSubGroupMap.set(conflictID, subgroup)
+    }
+}
+function createBClauseRelationships(bClause: string | undefined, conflictID: any) {
+    // B-Clause -> Conflicts
+    if (!bClauseToConflictsMap.has(<string>bClause)) {
+        if (bClause != null) {
+            bClauseToConflictsMap.set(bClause, [])
+        }
+    }
+
+    if (bClause != null) {
+        // console.log(bClause + " -> [..." + conflictID + "...]")
+        // @ts-ignore
+        bClauseToConflictsMap.get(bClause).push(conflictID)
     }
 }
 function promptAndExecuteExport() {
@@ -273,16 +359,19 @@ function promptAndExecuteExport() {
         }
     ]
 
-    inquirer.prompt(questions).then((answers: { [x: string]: any }) => {
-        console.log("Starting export")
-        createCharacters()
-        createAClauses()
-        createBClauses();
-        createCClauses()
+    inquirer.prompt(questions).then(async (answers: { [x: string]: any }) => {
 
-        compileBClauseIndex()
-        extractBClauseConflictMappings()
-        extractConflicts()
+        createBClausesMapping()
+        createRelationships()
+        createCharacterFiles()
+        createAClauseFiles()
+        createBClauseFiles()
+        createGroupFiles()
+        createSubgroupFiles()
+        createCClauseFiles()
+
+        createConflictFiles()
     })
 }
+
 promptAndExecuteExport();

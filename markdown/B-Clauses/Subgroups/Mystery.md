@@ -1,4 +1,0 @@
-## Mystery
-
-### Group
-- [[Enterprise]]

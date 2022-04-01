@@ -1,4 +1,0 @@
-## Simulation
-
-### Group
-- [[Enterprise]]

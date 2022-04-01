@@ -1,4 +1,0 @@
-## Misfortune
-
-### Group
-- [[Enterprise]]

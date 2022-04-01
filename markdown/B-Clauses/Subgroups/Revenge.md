@@ -1,4 +1,0 @@
-## Revenge
-
-### Group
-- [[Enterprise]]

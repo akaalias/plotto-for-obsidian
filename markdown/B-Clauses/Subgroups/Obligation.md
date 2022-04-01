@@ -1,4 +1,0 @@
-## Obligation
-
-### Group
-- [[Enterprise]]

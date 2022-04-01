@@ -1,4 +1,0 @@
-## Revelation
-
-### Group
-- [[Enterprise]]

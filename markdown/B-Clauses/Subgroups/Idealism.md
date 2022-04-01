@@ -1,4 +1,0 @@
-## Idealism
-
-### Group
-- [[Enterprise]]

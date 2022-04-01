@@ -1,4 +1,0 @@
-## Mistaken Judgment
-
-### Group
-- [[Enterprise]]
