@@ -243,7 +243,6 @@ function createConflictFiles() {
     }
 }
 function createCharacterFiles() {
-
     const charactersJSON = jsonRoot["characters"]
 
     for (const [mapKey, mapValue] of Object.entries(charactersJSON)) {
@@ -266,7 +265,6 @@ function createAClauseFiles() {
     }
 }
 function createBClauseFiles() {
-
     for (let masterClauseB of jsonRoot["masterClauseB"]) {
         const description = masterClauseB["description"]
         const group = masterClauseB["group"]

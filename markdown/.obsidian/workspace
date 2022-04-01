@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Conflicts/502.md",
+            "file": "Conflicts/601.md",
             "mode": "source"
           }
         }
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "Marriage",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -48,11 +48,13 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 289,
+    "collapsed": true
   },
   "right": {
     "id": "da215da6793a187e",
@@ -68,7 +70,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Conflicts/502.md",
+                "file": "Conflicts/601.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,15 +90,15 @@
   },
   "active": "5e2419511859430b",
   "lastOpenFiles": [
-    "Conflicts/502.md",
-    "Conflicts/405.md",
-    "Conflicts/361.md",
-    "Conflicts/300.md",
-    "Conflicts/256.md",
-    "Conflicts/221.md",
-    "Conflicts/41.md",
-    "Conflicts/35.md",
-    "Conflicts/31.md",
-    "Conflicts/22.md"
+    "Conflicts/601.md",
+    "Conflicts/111.md",
+    "Conflicts/574.md",
+    "Marriage.md",
+    "Groups/Love and Courtship.md",
+    "Subgroups/Love’s Misadventures.md",
+    "Conflicts/43.md",
+    "Love’s Beginning.md",
+    "Characters/F-B.md",
+    "Conflicts/576.md"
   ]
 }
