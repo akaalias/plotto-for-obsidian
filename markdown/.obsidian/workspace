@@ -4,11 +4,14 @@
     "type": "split",
     "children": [
       {
-        "id": "d9d87ca0e902c8e9",
+        "id": "f0caa93e3cf5b9c7",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "START HERE.md",
+            "mode": "source"
+          }
         }
       }
     ],
@@ -49,8 +52,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 289,
-    "collapsed": true
+    "width": 289
   },
   "right": {
     "id": "da215da6793a187e",
@@ -66,6 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "START HERE.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -83,17 +86,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "d9d87ca0e902c8e9",
+  "active": "f0caa93e3cf5b9c7",
   "lastOpenFiles": [
-    "Plots/Exploration 1.md",
-    "Conflicts/818.md",
-    "Conflicts/1089.md",
-    "Conflicts/697.md",
-    "Conflicts/1051.md",
     "START HERE.md",
     "Conflicts/364.md",
-    "Conflicts/955.md",
-    "Conflicts/368.md",
-    "Conflicts/1300.md"
+    "Conflicts/818.md",
+    "Conflicts/1089.md",
+    "Conflicts/1051.md",
+    "Plots/Exploration 1.md",
+    "Conflicts/914.md",
+    "Conflicts/847.md",
+    "Subgroups/Love’s Misadventures.md",
+    "Groups/Love and Courtship.md"
   ]
 }
