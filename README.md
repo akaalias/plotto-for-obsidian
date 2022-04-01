@@ -4,7 +4,7 @@
 ![Obsidian Graph View](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/graph.png)
 
 ## Example Obsidian Workbench
-![Obsidian Page](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/workbench.png)
+![Obsidian Workbench](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/workbench.png)
 
 Plotto for Obsidian changes how you conjure plots for your stories by making…
 - Conflicts easy to explore
@@ -19,6 +19,10 @@ Plotto for Obsidian changes how you conjure plots for your stories by making…
 3. Start Obsidian and open the “markdown” folder from this repository as your vault
 
 Once you have this set up, check out the “START HERE” guide for sketching your next plot.
+
+## Folder structure
+Each concept found in Plotto has its own folder for easier navigation
+![Obsidian Folders](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/folders.png)
 
 ## Plotto
 by William Wallace Cook, 1867-1933
