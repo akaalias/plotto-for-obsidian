@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Conflicts/601.md",
+            "file": "Conflicts/302.md",
             "mode": "source"
           }
         }
@@ -48,29 +48,26 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 289,
-    "collapsed": true
+    "width": 289
   },
   "right": {
     "id": "da215da6793a187e",
     "type": "split",
     "children": [
       {
-        "id": "99b9b2e39d4196d3",
+        "id": "19aa0164eed5be1b",
         "type": "tabs",
         "children": [
           {
-            "id": "1244a098a16e9082",
+            "id": "174b767980ab62d0",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Conflicts/601.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -90,15 +87,15 @@
   },
   "active": "5e2419511859430b",
   "lastOpenFiles": [
-    "Conflicts/601.md",
-    "Conflicts/111.md",
-    "Conflicts/574.md",
-    "Marriage.md",
-    "Groups/Love and Courtship.md",
-    "Subgroups/Love’s Misadventures.md",
-    "Conflicts/43.md",
-    "Love’s Beginning.md",
-    "Characters/F-B.md",
-    "Conflicts/576.md"
+    "Conflicts/302.md",
+    "Conflicts/305.md",
+    "Subgroups/Love’s Rejection.md",
+    "Subgroups/Craftiness.md",
+    "Subgroups/Chance.md",
+    "Conflicts/181.md",
+    "Conflicts/1309.md",
+    "Conflicts/1314.md",
+    "Subgroups/Revenge.md",
+    "Groups/Love and Courtship.md"
   ]
 }
