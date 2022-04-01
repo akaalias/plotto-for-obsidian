@@ -181,10 +181,11 @@ function createConflictFiles() {
                 // Description(s)
                 for (let descPiece of itemizedDescriptions) {
                     if (descPiece.trim() == "") {
-
+                        continue
                     } else {
                         descPiece = descPiece.trim()
 
+                        // Create character links
                         for(let character of characters) {
                             if(character == "X") { continue }
                             descPiece = descPiece.replaceAll(character, "[[" + character + "]]")
@@ -246,15 +247,14 @@ function createCharacterFiles() {
     const charactersJSON = jsonRoot["characters"]
 
     for (const [mapKey, mapValue] of Object.entries(charactersJSON)) {
-        if(mapKey == "A" || mapKey == "B") {
-            continue
-        }
-
         let markdown = "## " + mapKey + "\n"
         markdown += "- " + mapValue + "\n"
         saveMarkdownFile("./markdown/Characters/" + mapKey + ".md", markdown)
 
-        characters.push(mapKey)
+        // Link only fringe characters
+        if(mapKey.indexOf("-") > 0) {
+            characters.push(mapKey)
+        }
     }
 }
 function createAClauseFiles() {

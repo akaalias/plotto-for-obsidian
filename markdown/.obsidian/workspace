@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Conflicts/259.md",
+            "file": "Conflicts/502.md",
             "mode": "source"
           }
         }
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "undefined",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -48,8 +48,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -69,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Conflicts/259.md",
+                "file": "Conflicts/502.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,15 +88,15 @@
   },
   "active": "5e2419511859430b",
   "lastOpenFiles": [
-    "Conflicts/259.md",
-    "Characters/A-3.md",
-    "Characters/A-2.md",
-    "Conflicts/167.md",
-    "undefined.md",
-    "Conflicts/94.md",
-    "Conflicts/991.md",
-    "Conflicts/989.md",
-    "Conflicts/987.md",
-    "B-Clauses/Subgroups/Obligation.md"
+    "Conflicts/502.md",
+    "Conflicts/405.md",
+    "Conflicts/361.md",
+    "Conflicts/300.md",
+    "Conflicts/256.md",
+    "Conflicts/221.md",
+    "Conflicts/41.md",
+    "Conflicts/35.md",
+    "Conflicts/31.md",
+    "Conflicts/22.md"
   ]
 }
