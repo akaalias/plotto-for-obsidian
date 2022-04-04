@@ -1,0 +1,11 @@
+{
+  "useForwardLinks": true,
+  "useBackLinks": true,
+  "useTags": true,
+  "skipMOCs": true,
+  "MOCMaxLinks": 30,
+  "enableHighContrast": false,
+  "skipFolders": "Characters/, Groups/, Subgroups/, Plots/, A-Clauses/, C-Clauses/",
+  "enableLinks": true,
+  "enableTransclusion": false
+}

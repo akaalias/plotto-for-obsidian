@@ -4,11 +4,14 @@
     "type": "split",
     "children": [
       {
-        "id": "c86982713b6cf049",
+        "id": "a1fa91eea6f41090",
         "type": "leaf",
         "state": {
-          "type": "graph",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "START HERE.md",
+            "mode": "source"
+          }
         }
       }
     ],
@@ -66,6 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "START HERE.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -83,17 +87,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "c86982713b6cf049",
+  "active": "a1fa91eea6f41090",
   "lastOpenFiles": [
-    "966-2.md",
-    "Conflicts/110.md",
-    "B-Clauses/Becoming Aware of an Important Secret that Calls for Decisive Action.md",
     "START HERE.md",
-    "Conflicts/1451.md",
-    "B-Clauses/Bearing Patiently with Misfortunes and Seeking to Attain Cherished Aims Honorably.md",
-    "B-Clauses/Assuming the Character of a Criminal in a Perfectly Honest Enterprise.md",
-    "B-Clauses/Aiding Another to Hide from the World a Fateful Secret.md",
-    "Conflicts/364.md",
-    "Conflicts/818.md"
+    "Plots/Journey Example.md",
+    "Conflicts/241.md",
+    "Conflicts/648.md",
+    "Conflicts/772.md",
+    "Conflicts/237.md",
+    "Conflicts/1432.md",
+    "graphview.png",
+    "966-2.md",
+    "Conflicts/110.md"
   ]
 }

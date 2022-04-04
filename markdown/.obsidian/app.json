@@ -1,4 +1,5 @@
 {
   "promptDelete": false,
-  "emacsyKeys": true
+  "emacsyKeys": true,
+  "alwaysUpdateLinks": true
 }
