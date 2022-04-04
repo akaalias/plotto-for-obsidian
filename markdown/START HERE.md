@@ -1,4 +1,4 @@
-![[graphview.png]]
+![Example Obsidian Workbench](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/graphview.png)
 
 Hey there and welcome to Plotto for Obsidian!
 
@@ -31,20 +31,23 @@ The easiest way to start exploring this vault and pick pieces for your new plot 
 - Option 2: Use Journey's "I feel lucky"-Button for random conflicts
 
 #### Step 2: Getting Directions from A to B
-![Journey Search Form](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/journey-search-form.png)
-![Journey Search Result](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/journey-search-result.png)
-![Journey Search Result](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/journey-plot-part1.png)
 - Click on the Journey icon in the left sidebar 
 - Enter the full path for conflict A and B
+![Journey Search Form](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/journey-search-form.png)
 - Hit the Search button
+![Journey Search Result](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/journey-search-result.png)
+![Journey Search Result](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/journey-plot-part1.png)
 - Copy and paste the result into your scratchpad
+![Journey Search Result](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/journey-plot-part1.png)
 
 #### Step 3: Getting Directions from B to C
-![Journey Search Result](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/journey-plot-part2.png)
 - Click on the Journey icon in the left sidebar 
 - Enter the full path for conflict B and C
 - Hit the Search button
 - Copy and paste the result into your scratchpad
+![Journey Search Result](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/journey-plot-part2.png)
+
+##### Explore and Expand the Basic Plot
 - And Voilá! You have a basic plot to work with
 ![Journey Search Result](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/resulting-journey-plot.png)
 
