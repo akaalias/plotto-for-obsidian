@@ -33,14 +33,14 @@ The easiest way to start exploring this vault and pick pieces for your new plot 
 #### Step 2: Getting Directions from A to B
 ![Journey Search Form](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/journey-search-form.png)
 ![Journey Search Result](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/journey-search-result.png)
-![Journey Search Result](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/journey-plot-part-1.png)
+![Journey Search Result](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/journey-plot-part1.png)
 - Click on the Journey icon in the left sidebar 
 - Enter the full path for conflict A and B
 - Hit the Search button
 - Copy and paste the result into your scratchpad
 
 #### Step 3: Getting Directions from B to C
-![Journey Search Result](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/journey-plot-part-2.png)
+![Journey Search Result](https://raw.githubusercontent.com/akaalias/plotto-for-obsidian/main/journey-plot-part2.png)
 - Click on the Journey icon in the left sidebar 
 - Enter the full path for conflict B and C
 - Hit the Search button
